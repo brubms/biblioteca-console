@@ -37,14 +37,14 @@ public class Membro {
     public void desativar(){
         if(livrosEmprestados == 0){
             ativo = false;
-            System.out.println("Desativado");
+            System.out.println(getNome() + " Desativado");
         }else{
             System.out.println("Não consigo desativar, Erro!!");
         }
     }
     public void reativar(){
             ativo = true;
-            System.out.println("Ativo");
+            System.out.println(getNome() +" Ativo");
 
     }
 
