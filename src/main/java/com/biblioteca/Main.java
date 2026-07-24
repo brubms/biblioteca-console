@@ -11,7 +11,7 @@ public class Main {
        
         Biblioteca biblioteca = new Biblioteca("A Única");
         Membro membro1 = new Membro("Bruno Martins", "brunoberna21@gmail.com", 160122);
-        Membro mebro2 = new Membro("Laiana Bernardo", "lalaimartins@outlook.com", 160123);
+        Membro membro2 = new Membro("Laiana Bernardo", "lalaimartins@outlook.com", 160123);
         Livro livro1 =  new Livro("Biblía", "Deus", 0);
         Livro livro2 = new Livro("Manual de Redação", "Desconhecido", 1900 );
 
@@ -23,7 +23,7 @@ public class Main {
 
         biblioteca.adicionarLivro(livro2);
         biblioteca.listarLivros();
-        biblioteca.adicionarMembro(mebro2);
+        biblioteca.adicionarMembro(membro2);
 
         biblioteca.listarMembros();
 
@@ -31,7 +31,13 @@ public class Main {
 
         biblioteca.buscarMembrosPorId(160124);
 
-        biblioteca.emprestarLivro("Manual da Redação", 160122);
+        biblioteca.emprestarLivro("Manual de Redação", 160122);
+
+        System.out.println("--------------------");
+
+        biblioteca.emprestarLivro("Manual de Redação", 160123);
+
+       biblioteca.devolverLivro("Biblía", 160122);
 
 
         

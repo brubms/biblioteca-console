@@ -4,87 +4,100 @@ import java.util.ArrayList;
 
 public class Biblioteca {
 
+    //Atributos
     private String nome;
     private ArrayList<Livro> livros;
     private ArrayList<Membro> membros;
    
-
+    //Construtor
     public Biblioteca(String nome){
         this.nome = nome;
         this.livros = new ArrayList<>();
         this.membros = new ArrayList<>();
     }
 
+    //Métodos
     public void adicionarLivro(Livro livro){
         this.livros.add(livro);
         System.out.println(livro.getTitulo() + " adicionado!");
     }
-    public void adicionarMembro(Membro membros){
-        this.membros.add(membros);
-        System.out.println("Seja bem-vindo " + membros.getNome());
+    public void adicionarMembro(Membro membro){
+        this.membros.add(membro);
+        System.out.println("Seja bem-vindo " + membro.getNome());
     }
     public void listarLivros(){
         for (Livro livro : livros) {
             System.out.println(livro);
             
         }
-
     }
     public void listarMembros(){
         for (Membro membro : membros) {
             System.out.println(membro);
         }
-
     }
-    public void buscarLivrosPorTitulo(String titulo){
-
+    public Livro buscarLivrosPorTitulo(String titulo){
         for (Livro livro : livros) {
             if(titulo.equalsIgnoreCase(livro.getTitulo())){
-                System.out.println(livro.getTitulo() + " encontrado");
-                return;
+                return livro;
             }
-
         }
-        System.out.println("Livro não localizado!!!");
-        
+        return null;
     }
-    public void buscarMembrosPorId(int id){
+    public Membro buscarMembrosPorId(int id){
         for (Membro membro : membros) {
             if(id == membro.getId()){
-                System.out.println(membro.getId() + ", membro localizado!!");
-                return;
+                return membro;
             }
-
         }
-        System.out.println(id + ", não localizado!!!");
+        return null;
+    }
+    public void emprestarLivro(String titulo, int idMembro){
+        
+        Livro livro = buscarLivrosPorTitulo(titulo);
+        Membro membro = buscarMembrosPorId(idMembro);
+
+        if(livro == null){
+            System.out.println("Erro, livro não encontrado");
+            return;
+        }
+        if(membro == null){
+            System.out.println("Erro, membro não existe");
+            return;
+        }
+        if(livro.isEmprestado()){
+            System.out.println("erro, livro não disponivel!!");
+            return;
+        }
+
+        livro.emprestar();
+        membro.pegarLivro();
 
     }
-    public Livro emprestarLivro(String titulo, int idMembro){
-        
-        for (Livro livro : livros) {
-            if(titulo.equalsIgnoreCase(livro.getTitulo())){
-               return livro; 
-            }
-            for (Membro membro : membros) {
-            if(idMembro == membro.getId()){
-            
-            }
-            return null;
-        }
-        }
-    
-        Livro livro = emprestarLivro(titulo, idMembro);
-        return emprestarLivro(titulo, idMembro);
-       
-        
 
-        
-        
-
-    }
     public void devolverLivro(String titulo, int idMembro){
 
-    }
+      Livro livro = buscarLivrosPorTitulo(titulo);
+      Membro membro = buscarMembrosPorId(idMembro);
 
+        if(livro == null){
+            System.out.println("Erro, livro não encontrado");
+            return;
+        }
+
+        if(membro == null){
+            System.out.println("Erro, membro não existe");
+            return;
+        }
+        if(!livro.isEmprestado()){
+            System.out.println("Erro: livro não está emprestado, não pode devolver");
+            return;
+        }
+
+        membro.devolverLivro();
+        livro.devolver();
+
+
+    }
 
 }

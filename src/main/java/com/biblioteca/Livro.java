@@ -27,7 +27,7 @@ public class Livro {
 
     public void devolver(){
         this.emprestado = false;
-        System.out.println("Devolvido!");
+        System.out.println("Livro devolvido");
 
     }
 
