@@ -15,7 +15,7 @@ Projeto de aprendizado para desenvolvimento backend.
 - [x] Cadastro de livros
 - [x] Empréstimo e devolução de livros
 - [x] Cadastro de membros
-- [ ] Controle de livros emprestados
+- [x] Controle de livros emprestados
 - [ ] Banco de dados (em breve)
 
 ## 🛠️ Tecnologias
