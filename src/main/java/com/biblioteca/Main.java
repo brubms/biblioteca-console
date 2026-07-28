@@ -6,16 +6,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        
-
+        //objeto scanner, faz a entrada do código, no caso para que o menu possa funcionar.
         Scanner scan = new Scanner(System.in);
+        //Criação de uma nova biblioteca, está sendo instanciada uma biblioteca do tipo Biblioteca.
         Biblioteca biblioteca = new Biblioteca("Teste");
-        
-        
+        //atributos para o menu, um para selecionar qual será a opção desejada e outro para encerrar as opções e voltar para o menu central
         String encerrar;
         int menu;   
-
+        //loop do menu
         do{
         System.out.println("========================");
         System.out.println(" BIBLIOTECA JAVA 1.0 ");
@@ -31,11 +29,10 @@ public class Main {
         System.out.println("8. Devolver livro ");
         System.out.println("0. Sair");
         System.out.println("Escolha uma opção:");
+        //metodo usado para mudar um inteiro em String e não apagar informações.
         String menuStr = scan.nextLine();
         menu = Integer.parseInt(menuStr);
-
-        
-
+        //switch usado para selecionar qual opção do menu deve ser usada!
             switch (menu) {
                 //1. Adicionar livro
                 case 1:
@@ -95,7 +92,6 @@ public class Main {
                 break;
                 //5. Buscar livro por título
                 case 5:
-    
                 do{
                     System.out.println("Digite o titulo: ");
                     titulo = scan.nextLine();
@@ -111,8 +107,7 @@ public class Main {
                     System.out.println("Encerrado...");
                 break;
                 //6. Buscar membro por ID 
-                case 6:
-                    
+                case 6:   
                 do{
                     System.out.println("Digite o ID do membro: ");
                     String idStr = scan.nextLine();
@@ -164,7 +159,7 @@ public class Main {
         
                     biblioteca.devolverLivro(titulo, id);
                     
-                    System.out.println("Ainda quer emprestar? (S/N)");
+                    System.out.println("Ainda quer devolver? (S/N)");
                     encerrar = scan.nextLine();
                 }while(!encerrar.equalsIgnoreCase("N"));
                     System.out.println("Encerrado...");
@@ -179,22 +174,5 @@ public class Main {
 
         }while(menu != 0);
         System.out.println("Você saiu...");
-
-       
-        
-
-
-        
-        
-
-
-
-
-
-
-        
-        
-
-
     }
 }
