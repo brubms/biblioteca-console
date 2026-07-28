@@ -2,42 +2,186 @@ package com.biblioteca;
 
 import com.biblioteca.Livro;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+
         
+
+        Scanner scan = new Scanner(System.in);
+        Biblioteca biblioteca = new Biblioteca("Teste");
+        
+        
+        String encerrar;
+        int menu;   
+
+        do{
         System.out.println("========================");
         System.out.println(" BIBLIOTECA JAVA 1.0 ");
         System.out.println("========================");
+        System.out.println("==========MENU==========");
+        System.out.println("1. Adicionar livro ");
+        System.out.println("2. Adicionar membro ");
+        System.out.println("3. Listar livros ");
+        System.out.println("4. Listar membros ");
+        System.out.println("5. Buscar livro por título ");
+        System.out.println("6. Buscar membro por ID ");
+        System.out.println("7. Emprestar livro ");
+        System.out.println("8. Devolver livro ");
+        System.out.println("0. Sair");
+        System.out.println("Escolha uma opção:");
+        String menuStr = scan.nextLine();
+        menu = Integer.parseInt(menuStr);
+
+        
+
+            switch (menu) {
+                //1. Adicionar livro
+                case 1:
+                //Atributos:
+                String titulo;
+                String autor;
+                //Loop
+                do{
+                    System.out.println("===SISTEMA DE CADASTRO===");
+                    System.out.println("Para encerrar digite (N).");
+                    System.out.println("Título: ");
+                    titulo = scan.nextLine();
+                    System.out.println("Autor:");
+                    autor = scan.nextLine();
+                    System.out.println("Ano: ");
+                    String anoStr = scan.nextLine();
+                    int ano = Integer.parseInt(anoStr);
+                    
+                    Livro criarLivro = new Livro(titulo, autor, ano);
+                    biblioteca.adicionarLivro(criarLivro);
+                    System.out.println("Deseja cadastar mais algum livro? (S/N)");
+                    encerrar = scan.nextLine();  
+                }while(!encerrar.equalsIgnoreCase("N"));
+                    System.out.println("Encerrado...");
+                break;
+                //2. Adicionar membro
+                case 2:
+                //Atributos:
+                String nome;
+                String email;
+                int id;
+                //Loop
+                do{
+                    System.out.println("===SISTEMA DE CADASTRO===");
+                    System.out.println("Nome: ");
+                    nome = scan.nextLine();
+                    System.out.println("Email:");
+                    email = scan.nextLine();
+                    System.out.println("ID: ");
+                    String idStr = scan.nextLine();
+                    id = Integer.parseInt(idStr);
+                   
+                    Membro membro = new Membro(nome, email, id);
+                    biblioteca.adicionarMembro(membro);
+                    System.out.println("Deseja cadastar mais algum membro? (S/N)");
+                    encerrar = scan.nextLine();
+                }while(!encerrar.equalsIgnoreCase("N"));
+                    System.out.println("Encerrado...");
+                break;
+                //3. Listar livros
+                case 3:
+                    biblioteca.listarLivros();
+                break;
+                //4. Listar membros
+                case 4:
+                    biblioteca.listarMembros();
+                break;
+                //5. Buscar livro por título
+                case 5:
+    
+                do{
+                    System.out.println("Digite o titulo: ");
+                    titulo = scan.nextLine();
+                    Livro encontrado = biblioteca.buscarLivrosPorTitulo(titulo);
+                    if(encontrado != null){
+                        System.out.println("Livro encontrado: " + encontrado);
+                    }else{
+                        System.out.println(titulo + " não encontrado!");
+                    }
+                    System.out.println("Ainda quer procurar? (S/N)");
+                    encerrar = scan.nextLine();
+                    }while(!encerrar.equalsIgnoreCase("N"));
+                    System.out.println("Encerrado...");
+                break;
+                //6. Buscar membro por ID 
+                case 6:
+                    
+                do{
+                    System.out.println("Digite o ID do membro: ");
+                    String idStr = scan.nextLine();
+                    id = Integer.parseInt(idStr);
+                    Membro encontrado = biblioteca.buscarMembrosPorId(id);
+                    if(encontrado != null){
+                        System.out.println("Membro com ID: " + encontrado + " encontrado!!");
+                    }else{
+                        System.out.println(id + " não localizado" );
+                    }
+                    
+                    System.out.println("Ainda quer procurar? (S/N)");
+                    encerrar = scan.nextLine();
+                }while(!encerrar.equalsIgnoreCase("N"));
+                System.out.println("Encerrado...");
+                break;
+                //7. Emprestar livro 
+                case 7:
+                    
+                do{
+                    
+                    System.out.println("Digite o ID do cliente: ");
+                    String idStr = scan.nextLine();
+                    id = Integer.parseInt(idStr);
+                    
+        
+                    System.out.println("Digite o título do livro: ");
+                     titulo = scan.nextLine();
+        
+                    biblioteca.emprestarLivro(titulo, id);
+                    
+                    System.out.println("Ainda quer emprestar? (S/N)");
+                    encerrar = scan.nextLine();
+                }while(!encerrar.equalsIgnoreCase("N"));
+                    System.out.println("Encerrado...");
+
+                break;
+                //8. Devolver livro
+                case 8:
+                    do{
+                    
+                    System.out.println("Digite o ID do cliente: ");
+                    String idStr = scan.nextLine();
+                    id = Integer.parseInt(idStr);
+                    
+        
+                    System.out.println("Digite o título do livro: ");
+                     titulo = scan.nextLine();
+        
+                    biblioteca.devolverLivro(titulo, id);
+                    
+                    System.out.println("Ainda quer emprestar? (S/N)");
+                    encerrar = scan.nextLine();
+                }while(!encerrar.equalsIgnoreCase("N"));
+                    System.out.println("Encerrado...");
+                    
+
+                break;
+            
+                default:
+                    System.out.println("Opção inválida, tente novamente!");
+                    break;
+            }
+
+        }while(menu != 0);
+        System.out.println("Você saiu...");
+
        
-        Biblioteca biblioteca = new Biblioteca("A Única");
-        Membro membro1 = new Membro("Bruno Martins", "brunoberna21@gmail.com", 160122);
-        Membro membro2 = new Membro("Laiana Bernardo", "lalaimartins@outlook.com", 160123);
-        Livro livro1 =  new Livro("Biblía", "Deus", 0);
-        Livro livro2 = new Livro("Manual de Redação", "Desconhecido", 1900 );
-
-
-
-        biblioteca.adicionarLivro(livro1);
-        biblioteca.adicionarMembro(membro1);
-        biblioteca.listarLivros();
-
-        biblioteca.adicionarLivro(livro2);
-        biblioteca.listarLivros();
-        biblioteca.adicionarMembro(membro2);
-
-        biblioteca.listarMembros();
-
-        biblioteca.buscarLivrosPorTitulo("Biblía");
-
-        biblioteca.buscarMembrosPorId(160124);
-
-        biblioteca.emprestarLivro("Manual de Redação", 160122);
-
-        System.out.println("--------------------");
-
-        biblioteca.emprestarLivro("Manual de Redação", 160123);
-
-       biblioteca.devolverLivro("Biblía", 160122);
+        
 
 
         

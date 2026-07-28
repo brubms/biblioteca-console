@@ -26,8 +26,13 @@ public class Biblioteca {
         System.out.println("Seja bem-vindo " + membro.getNome());
     }
     public void listarLivros(){
+       
         for (Livro livro : livros) {
-            System.out.println(livro);
+            if(livro==null){
+                System.out.println("Lista vazia!!");
+            }else{
+              System.out.println(livro); 
+            }
             
         }
     }
