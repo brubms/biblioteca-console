@@ -24,6 +24,7 @@ Projeto de aprendizado para desenvolvimento backend.
 - Maven
 - Git & GitHub
 - VS Code
+- GitHUB Projects
 
 ## ▶️ Como rodar
 
