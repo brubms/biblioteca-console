@@ -13,8 +13,14 @@ public class Main {
         //atributos para o menu, um para selecionar qual será a opção desejada e outro para encerrar as opções e voltar para o menu central
         String encerrar;
         int menu;   
+        int id;
+       
+        
         //loop do menu
         do{
+        // LIMPAR TERMINAL AQUI 
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
         System.out.println("========================");
         System.out.println(" BIBLIOTECA JAVA 1.0 ");
         System.out.println("========================");
@@ -34,7 +40,7 @@ public class Main {
         menu = Integer.parseInt(menuStr);
         //switch usado para selecionar qual opção do menu deve ser usada!
             switch (menu) {
-                //1. Adicionar livro
+                //1. --------------------------------Adicionar livro---------------------------------
                 case 1:
                 //Atributos:
                 String titulo;
@@ -58,12 +64,12 @@ public class Main {
                 }while(!encerrar.equalsIgnoreCase("N"));
                     System.out.println("Encerrado...");
                 break;
-                //2. Adicionar membro
+                //2. -----------------------------Adicionar membro-----------------------------
                 case 2:
                 //Atributos:
                 String nome;
                 String email;
-                int id;
+                
                 //Loop
                 do{
                     System.out.println("===SISTEMA DE CADASTRO===");
@@ -71,26 +77,30 @@ public class Main {
                     nome = scan.nextLine();
                     System.out.println("Email:");
                     email = scan.nextLine();
-                    System.out.println("ID: ");
-                    String idStr = scan.nextLine();
-                    id = Integer.parseInt(idStr);
+                    
                    
-                    Membro membro = new Membro(nome, email, id);
+                    Membro membro = new Membro(nome, email);
                     biblioteca.adicionarMembro(membro);
                     System.out.println("Deseja cadastar mais algum membro? (S/N)");
                     encerrar = scan.nextLine();
                 }while(!encerrar.equalsIgnoreCase("N"));
                     System.out.println("Encerrado...");
                 break;
-                //3. Listar livros
+                //3. ----------------------Listar livros-------------------------
                 case 3:
                     biblioteca.listarLivros();
+                    System.out.println("\nPressione Enter para voltar ao menu...");
+                    scan.nextLine();
+
                 break;
-                //4. Listar membros
+                //4. --------------------------Listar membros-----------------------
                 case 4:
+            
                     biblioteca.listarMembros();
+                     System.out.println("\nPressione Enter para voltar ao menu...");
+                    scan.nextLine();
                 break;
-                //5. Buscar livro por título
+                //5. -----------------------------Buscar livro por título---------------------------------
                 case 5:
                 do{
                     System.out.println("Digite o titulo: ");
@@ -106,9 +116,10 @@ public class Main {
                     }while(!encerrar.equalsIgnoreCase("N"));
                     System.out.println("Encerrado...");
                 break;
-                //6. Buscar membro por ID 
+                //6. --------------------------------Buscar membro por ID --------------------------------
                 case 6:   
                 do{
+                    
                     System.out.println("Digite o ID do membro: ");
                     String idStr = scan.nextLine();
                     id = Integer.parseInt(idStr);
@@ -124,7 +135,7 @@ public class Main {
                 }while(!encerrar.equalsIgnoreCase("N"));
                 System.out.println("Encerrado...");
                 break;
-                //7. Emprestar livro 
+                //7. -------------------------------------Emprestar livro -------------------------------
                 case 7:
                     
                 do{
@@ -145,7 +156,7 @@ public class Main {
                     System.out.println("Encerrado...");
 
                 break;
-                //8. Devolver livro
+                //8. ----------------------------------Devolver livro-------------------------------------------
                 case 8:
                     do{
                     
@@ -166,6 +177,9 @@ public class Main {
                     
 
                 break;
+                // -----------------------------------SAIR----------------------------------------------
+                case 0:
+                    break;
             
                 default:
                     System.out.println("Opção inválida, tente novamente!");

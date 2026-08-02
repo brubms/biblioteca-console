@@ -8,12 +8,13 @@ public class Membro {
     private int id;
     private int livrosEmprestados = 0;
     private boolean ativo = true;
+    private static int contador = 0;
 
     //Construtor:
-    public Membro(String nome, String email, int id){
+    public Membro(String nome, String email){
         this.nome = nome;
         this.email = email;
-        this.id = id;
+        this.id = ++contador;
     }
        
 
@@ -68,7 +69,7 @@ public class Membro {
 
     @Override
     public String toString(){
-        return  getNome() + "|" + getEmail() + "|" + getId() + "|" + getLivrosEmprestados() + "|" + (isAtivo() ? "sim" : "nao");
+        return  getNome() + "|" + getEmail() + "|"  + getLivrosEmprestados() + "|" + (isAtivo() ? "sim" : "nao");
     }
 }
 
