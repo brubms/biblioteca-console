@@ -10,8 +10,12 @@ public class Livro {
     public Livro(String titulo, String autor, int anoPublicacao){
         this.titulo = titulo;
         this.autor = autor;
+        if(anoPublicacao<1500||anoPublicacao>2026){
+            throw new IllegalArgumentException("Erro, ano inválido");
+        }
         this.anoPublicacao = anoPublicacao;
         this.emprestado = false;
+        
     }
 
     public void emprestar(){

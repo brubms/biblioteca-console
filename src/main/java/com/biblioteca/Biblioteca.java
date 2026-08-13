@@ -8,6 +8,7 @@ public class Biblioteca {
     private String nome;
     private ArrayList<Livro> livros;
     private ArrayList<Membro> membros;
+
    
     //Construtor
     public Biblioteca(String nome){
@@ -119,6 +120,17 @@ public class Biblioteca {
         livro.devolver();
 
 
+    }
+    public int contarLivrosPorAutor(String autor){
+        int contador = 0;
+        for (Livro livro : livros) {
+            if(livro.getAutor().equalsIgnoreCase(autor)){
+                contador = contador + 1;
+            }
+            
+        }
+        
+        return contador;
     }
 
 }

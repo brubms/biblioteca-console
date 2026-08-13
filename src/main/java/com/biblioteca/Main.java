@@ -30,9 +30,10 @@ public class Main {
         System.out.println("3. Listar livros ");
         System.out.println("4. Listar membros ");
         System.out.println("5. Buscar livro por título ");
-        System.out.println("6. Buscar membro por ID ");
-        System.out.println("7. Emprestar livro ");
-        System.out.println("8. Devolver livro ");
+        System.out.println("6. Verificar quantidade de livros por autor");
+        System.out.println("7. Buscar membro por ID ");
+        System.out.println("8. Emprestar livro ");
+        System.out.println("9. Devolver livro ");
         System.out.println("0. Sair");
         System.out.println("Escolha uma opção:");
         //metodo usado para mudar um inteiro em String e não apagar informações.
@@ -56,9 +57,13 @@ public class Main {
                     System.out.println("Ano: ");
                     String anoStr = scan.nextLine();
                     int ano = Integer.parseInt(anoStr);
-                    
+                    try{
                     Livro criarLivro = new Livro(titulo, autor, ano);
-                    biblioteca.adicionarLivro(criarLivro);
+                    biblioteca.adicionarLivro(criarLivro);    
+                    }catch(IllegalArgumentException e){
+                        System.out.println("Ano inválido");
+                    }
+                    
                     System.out.println("Deseja cadastar mais algum livro? (S/N)");
                     encerrar = scan.nextLine();  
                 }while(!encerrar.equalsIgnoreCase("N"));
@@ -116,8 +121,19 @@ public class Main {
                     }while(!encerrar.equalsIgnoreCase("N"));
                     System.out.println("Encerrado...");
                 break;
-                //6. --------------------------------Buscar membro por ID --------------------------------
-                case 6:   
+                //6. ---------------------------Verificar quantidade de livros por autor-------------------
+                case 6:
+                    System.out.println("Digite o nome do autor:");
+                    autor = scan.nextLine();
+
+                    int total = biblioteca.contarLivrosPorAutor(autor);
+                    System.out.println("Livros encontrado: " + total);
+                    scan.nextLine();
+
+                    break;
+
+                //7. --------------------------------Buscar membro por ID --------------------------------
+                case 7:   
                 do{
                     
                     System.out.println("Digite o ID do membro: ");
@@ -136,7 +152,7 @@ public class Main {
                 System.out.println("Encerrado...");
                 break;
                 //7. -------------------------------------Emprestar livro -------------------------------
-                case 7:
+                case 8:
                     
                 do{
                     
@@ -157,7 +173,7 @@ public class Main {
 
                 break;
                 //8. ----------------------------------Devolver livro-------------------------------------------
-                case 8:
+                case 9:
                     do{
                     
                     System.out.println("Digite o ID do cliente: ");
