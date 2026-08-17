@@ -1,6 +1,8 @@
 package com.biblioteca;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Biblioteca {
 
@@ -19,8 +21,16 @@ public class Biblioteca {
 
     //Métodos
     public void adicionarLivro(Livro livro){
-        this.livros.add(livro);
+        // esse for percorre cada livro já adicionado
+        for (Livro item : livros) { //<- item é a variável que armazena o que compara do livros que já está sendo cadastrado
+           if(livro.getTitulo().equalsIgnoreCase(item.getTitulo())){
+                System.out.println("Titulo já cadastrado!");
+                return;
+            }
+        }
+         this.livros.add(livro);
         System.out.println(livro.getTitulo() + " adicionado!");
+        
     }
     public void adicionarMembro(Membro membro){
         this.membros.add(membro);
@@ -91,9 +101,15 @@ public class Biblioteca {
             System.out.println("erro, livro não disponivel!!");
             return;
         }
-
-        livro.emprestar();
+        if(membro.getLivrosEmprestados()>=3){
+            System.out.println("Limite excedido!");
+            return;
+        }else{
+            livro.emprestar();
         membro.pegarLivro();
+        }
+
+        
 
     }
 
@@ -132,5 +148,14 @@ public class Biblioteca {
         
         return contador;
     }
+    public void listarTopLivros(){
+        Collections.sort(livros,(a,b) -> b.getVezesEmprestado() - a.getVezesEmprestado());
+        for (Livro livro : livros) {
+            System.out.println(livro.getTitulo() + " - " + livro.getVezesEmprestado());
+        }
+    }
+
+        
+    
 
 }

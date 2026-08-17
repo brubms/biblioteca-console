@@ -11,7 +11,7 @@ public class Main {
         //Criação de uma nova biblioteca, está sendo instanciada uma biblioteca do tipo Biblioteca.
         Biblioteca biblioteca = new Biblioteca("Teste");
         //atributos para o menu, um para selecionar qual será a opção desejada e outro para encerrar as opções e voltar para o menu central
-        String encerrar;
+        String encerrar = "";
         int menu;   
         int id;
        
@@ -34,6 +34,7 @@ public class Main {
         System.out.println("7. Buscar membro por ID ");
         System.out.println("8. Emprestar livro ");
         System.out.println("9. Devolver livro ");
+        System.out.println("10. Ranking ");
         System.out.println("0. Sair");
         System.out.println("Escolha uma opção:");
         //metodo usado para mudar um inteiro em String e não apagar informações.
@@ -155,10 +156,16 @@ public class Main {
                 case 8:
                     
                 do{
-                    
+                    try{
                     System.out.println("Digite o ID do cliente: ");
                     String idStr = scan.nextLine();
                     id = Integer.parseInt(idStr);
+
+                    }catch(NumberFormatException e){
+                        System.out.println("ID inválido! Digite apenas números.");
+                        continue;
+                    }
+                    
                     
         
                     System.out.println("Digite o título do livro: ");
@@ -190,9 +197,20 @@ public class Main {
                     encerrar = scan.nextLine();
                 }while(!encerrar.equalsIgnoreCase("N"));
                     System.out.println("Encerrado...");
-                    
+
+                     break;
+
+                //-------------------RANKING--------------------------
+
+                case 10:
+                biblioteca.listarTopLivros();
+                System.out.println("Enter para continuar...");
+                scan.nextLine();
 
                 break;
+                    
+
+               
                 // -----------------------------------SAIR----------------------------------------------
                 case 0:
                     break;

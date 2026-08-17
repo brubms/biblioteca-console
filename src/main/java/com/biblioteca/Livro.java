@@ -6,6 +6,7 @@ public class Livro {
     private String autor;
     private int anoPublicacao;
     private boolean emprestado;
+    private int vezesEmprestado;
 
     public Livro(String titulo, String autor, int anoPublicacao){
         this.titulo = titulo;
@@ -22,10 +23,12 @@ public class Livro {
         if(emprestado == false){
             this.emprestado = true;
             System.out.println("Livro emprestado");
+            ++vezesEmprestado;
         }else{
             System.out.println("Livro já emprestado");
 
         }
+        
 
     }
 
@@ -47,10 +50,13 @@ public class Livro {
         return emprestado;
     
     }
+    public int getVezesEmprestado(){
+        return this.vezesEmprestado;
+    }
 
     @Override
     public String toString(){
-        return titulo + "|" + autor + "|" + anoPublicacao + "|" + (isEmprestado()? "Emprestado" : "Disponivel");
+        return titulo + "|" + autor + "|" + anoPublicacao + "|" + (isEmprestado()? "Emprestado" : "Disponivel" + "|" + "Top: " + vezesEmprestado);
     }
     
 }

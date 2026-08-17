@@ -20,8 +20,17 @@ public class Membro {
 
     //Método para pegar livros!
     public void pegarLivro(){
-        livrosEmprestados++;
+
+       if(livrosEmprestados>=3){
+            System.out.println("Limite máximo atingido");
+            return;
+        }else{
+            livrosEmprestados++;
         System.out.println(getNome() + " Pegou livro");
+
+        }
+        
+        
     }
 
     //método para devolução
