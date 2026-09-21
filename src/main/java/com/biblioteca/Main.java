@@ -129,6 +129,7 @@ public class Main {
 
                     int total = biblioteca.contarLivrosPorAutor(autor);
                     System.out.println("Livros encontrado: " + total);
+                    System.out.println("Digite enter para sair...");
                     scan.nextLine();
 
                     break;
@@ -204,7 +205,7 @@ public class Main {
 
                 case 10:
                 biblioteca.listarTopLivros();
-                System.out.println("Enter para continuar...");
+                System.out.println("Enter para sair...");
                 scan.nextLine();
 
                 break;

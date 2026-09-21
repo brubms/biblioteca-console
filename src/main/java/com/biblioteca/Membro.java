@@ -1,20 +1,44 @@
 package com.biblioteca;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+@Entity 
+@Table(name = "membros")
 public class Membro {
 
     //Atributos:
+    @Column (name = "nome", nullable = false)
     private String nome;
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Id 
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column (name = "livros_emprestados")
     private int livrosEmprestados = 0;
+
+    @Column (name = "ativo")
     private boolean ativo = true;
-    private static int contador = 0;
+    
+
+    public Membro(){
+
+    }
 
     //Construtor:
     public Membro(String nome, String email){
         this.nome = nome;
         this.email = email;
-        this.id = ++contador;
+       
     }
        
 
