@@ -18,9 +18,10 @@ Projeto de aprendizado para desenvolvimento backend.
 - [x] Cadastro de membros
 - [x] Controle de livros emprestados
 - [x] Limpeza de tela ao selecionar as opções 
-- [x] validação dos dados, se caso fossem vazios
-- [x] ID oculto para o usuário e criação automática de usuário
-- [ ] Banco de dados (em breve)
+- [x] Validação de dados vazios
+- [x] Persistência em Banco de Dados Relacional (MySQL)
+- [x] Camada de acesso a dados com JDBC Puro e padrão DAO
+- [x] Mapeamento Objeto-Relacional (ORM) com JPA / Hibernate e controle de ciclo de vida (`EntityManager`)
 
 ### v2.0 (API REST - Em breve)
 - [ ] Banco de dados PostgreSQL
@@ -31,7 +32,10 @@ Projeto de aprendizado para desenvolvimento backend.
 
 - Java 17
 - Maven
-- Git & GitHub
+- MySQL 8
+- JDBC Puro
+- Jakarta Persistence (JPA) & Hibernate Core 6.5
+- Git & GitHub (Git Flow com Feature Branches e Commits Atômicos)
 - VS Code
 - GitHub Projects
 
