@@ -32,7 +32,7 @@ public class Membro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "livros_emprestados")
+    @Column(name = "livros_emprestados", nullable = false)
     private int livrosEmprestados = 0;
 
     @Column(name = "ativo")
