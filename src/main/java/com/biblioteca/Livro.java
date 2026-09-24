@@ -1,12 +1,33 @@
 package com.biblioteca;
 
-public class Livro {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table (name = "livros")
+public class Livro {
+    @Id 
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column (name = "titulo", nullable = false)
     private String titulo;
+    @Column (name = "autor", nullable = false)
     private String autor;
+    @Column (name = "ano_publicacao", nullable = false)
     private int anoPublicacao;
+    @Column (name = "emprestado")
     private boolean emprestado;
+    @Column (name = "vezes_emprestado")
     private int vezesEmprestado;
+
+    //construtor vazio para o jpa
+    public Livro(){
+
+    }
 
     public Livro(String titulo, String autor, int anoPublicacao){
         this.titulo = titulo;
@@ -36,6 +57,10 @@ public class Livro {
         this.emprestado = false;
         System.out.println("Livro devolvido");
 
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     public String getTitulo(){
