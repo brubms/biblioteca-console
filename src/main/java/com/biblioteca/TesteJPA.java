@@ -42,7 +42,7 @@ public class TesteJPA {
         System.out.println("Encontrei: " + membro.getNome());
 
         
-        *fecha a transação
+        *fecha o gerente EntityManager
         em.close();
         *fecha a fabrica de conexão
         FabricaEntityManager.fechar();

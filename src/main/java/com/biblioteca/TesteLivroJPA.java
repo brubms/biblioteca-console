@@ -40,7 +40,7 @@ public class TesteLivroJPA {
 
         */
 
-    em.getTransaction().begin();
+    
     String jpql = "SELECT l FROM Livro l WHERE l.emprestado = false";
     List<Livro> livrosDisponiveis = em.createQuery(jpql,Livro.class).getResultList();
 
@@ -49,6 +49,8 @@ public class TesteLivroJPA {
         
     }
 
+    em.close();
+    FabricaEntityManager.fechar();
 
      }
 }
