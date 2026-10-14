@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+import java.util.ArrayList;
 
 
 @Entity
@@ -37,7 +40,13 @@ public class Membro {
 
     @Column(name = "ativo")
     private boolean ativo = true;
-
+    /*
+    * Pulo do Gato: O mappedBy = "membro" avisa o Hibernate: "A chave estrangeira já está sendo controlada
+    * pelo atributo membro lá na classe Livro. Não crie uma tabela intermediária extra,
+    *  use a coluna membro_id que já existe!".
+    * */
+    @OneToMany(mappedBy = "membro")
+    private List<Livro> livros = new ArrayList<>();
     public Membro() {
 
     }
@@ -104,6 +113,10 @@ public class Membro {
 
     public int getLivrosEmprestados() {
         return this.livrosEmprestados;
+    }
+
+    public List<Livro> getLivros(){
+        return this.livros;
     }
 
     public boolean isAtivo() {

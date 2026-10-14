@@ -12,7 +12,7 @@
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/biblioteca_db?useTimezone=true&amp;serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value=""/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
 
             <!-- 2. Dialeto do Hibernate para MySQL 8 -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

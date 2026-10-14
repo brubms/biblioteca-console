@@ -1,13 +1,37 @@
 package com.biblioteca;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "livros")
 public class Livro {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "titulo", nullable = false)
     private String titulo;
+
+    @Column(name = "autor", nullable = false)
     private String autor;
+
+    @Column(name = "ano_publicacao", nullable = false)
     private int anoPublicacao;
+
+    @Column(name = "emprestado")
     private boolean emprestado;
+
+    @Column(name = "vezes_emprestado")
     private int vezesEmprestado;
 
+    @ManyToOne // ---> diz ao JPA que muitos livros podem pertencer a único membro
+    @JoinColumn(name = "membro_id") //---> cria fisicamente a coluina membro_id dentro da tabela livros
+    private Membro membro;
+
+    public Livro(){
+
+    }
     public Livro(String titulo, String autor, int anoPublicacao){
         this.titulo = titulo;
         this.autor = autor;
@@ -19,11 +43,12 @@ public class Livro {
         
     }
 
-    public void emprestar(){
-        if(emprestado == false){
+    public void emprestarPara(Membro membro){
+        if(!this.emprestado){
             this.emprestado = true;
-            System.out.println("Livro emprestado");
-            ++vezesEmprestado;
+            this.membro = membro;
+            this.vezesEmprestado++;
+            System.out.println("Livro: " + this.titulo + " emprestado para " + membro.getNome());
         }else{
             System.out.println("Livro já emprestado");
 
@@ -33,9 +58,13 @@ public class Livro {
     }
 
     public void devolver(){
-        this.emprestado = false;
-        System.out.println("Livro devolvido");
-
+        if(this.emprestado){
+            this.emprestado = false;
+            this.membro = null;
+            System.out.println("Livro: " + this.titulo + " devilvido com sucesso!");
+        }else{
+            System.out.println("Livro já está disponível na biblioteca.");
+        }
     }
 
     public String getTitulo(){
@@ -45,6 +74,9 @@ public class Livro {
     public String getAutor(){
         return this.autor;
     }
+
+    public Membro getMembro(){ return this.membro;}
+
 
     public boolean isEmprestado(){
         return emprestado;
