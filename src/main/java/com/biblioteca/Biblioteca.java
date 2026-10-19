@@ -105,7 +105,7 @@ public class Biblioteca {
             System.out.println("Limite excedido!");
             return;
         }else{
-            livro.emprestar();
+
         membro.pegarLivro();
         }
 

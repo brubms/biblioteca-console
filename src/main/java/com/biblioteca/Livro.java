@@ -44,15 +44,21 @@ public class Livro {
     }
 
     public void emprestarPara(Membro membro){
-        if(!this.emprestado){
+        if(this.emprestado == true){
+            throw new IllegalStateException("Livro já foi emprestado");
+        }
+        if(membro == null){
+            throw new IllegalArgumentException("Membro não pode ser nulo");
+        }
+        if (!membro.isAtivo()){
+            throw new IllegalStateException("Membro inativo não pode realizar emprestimo.");
+        }
+
             this.emprestado = true;
             this.membro = membro;
             this.vezesEmprestado++;
-            System.out.println("Livro: " + this.titulo + " emprestado para " + membro.getNome());
-        }else{
-            System.out.println("Livro já emprestado");
+            membro.getLivros().add(this);
 
-        }
         
 
     }
