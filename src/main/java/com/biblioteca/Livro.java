@@ -59,14 +59,14 @@ public class Livro {
             this.vezesEmprestado++;
             membro.getLivros().add(this);
 
-        
+
 
     }
 
     public void devolver(){
 
         if(!this.emprestado){
-            throw new IllegalStateException("Livro já emprestado");
+            throw new IllegalStateException("Livro não está emprestado");
         }
         if(this.membro != null){
             this.membro.getLivros().remove(this);
