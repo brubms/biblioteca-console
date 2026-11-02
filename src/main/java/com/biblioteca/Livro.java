@@ -59,18 +59,23 @@ public class Livro {
             this.vezesEmprestado++;
             membro.getLivros().add(this);
 
-        
+
 
     }
 
     public void devolver(){
-        if(this.emprestado){
-            this.emprestado = false;
-            this.membro = null;
-            System.out.println("Livro: " + this.titulo + " devilvido com sucesso!");
-        }else{
-            System.out.println("Livro já está disponível na biblioteca.");
+
+        if(!this.emprestado){
+            throw new IllegalStateException("Livro não está emprestado");
         }
+        if(this.membro != null){
+            this.membro.getLivros().remove(this);
+
+        }
+        this.emprestado = false;
+        this.membro = null;
+
+
     }
 
     public String getTitulo(){
